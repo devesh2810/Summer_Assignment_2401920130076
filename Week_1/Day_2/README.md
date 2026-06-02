@@ -36,3 +36,30 @@ public:
         return false;
     }
 };
+
+**************** Maximum average Subarray 1 ************
+
+
+class Solution {
+public:
+    double findMaxAverage(vector<int>& nums, int k) {
+        long long wsum = 0;
+
+        for (int i = 0; i < k; i++) {
+            wsum += nums[i];
+        }
+
+        long long maxSum = wsum;
+
+        for (int i = k; i < nums.size(); i++) {
+            wsum += nums[i];
+            wsum -= nums[i - k];
+
+            if (wsum > maxSum) {
+                maxSum = wsum;
+            }
+        }
+
+        return (double)maxSum / k;
+    }
+};
