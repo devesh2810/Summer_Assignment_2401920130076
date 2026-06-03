@@ -52,3 +52,27 @@ public:
 };
 
 *************** container with most water ***********
+
+class Solution {
+public:
+    int maxArea(vector<int>& bars) {
+        int startEdge = 0;
+        int endEdge = bars.size() - 1;
+        int bestHold = 0;
+
+        while (startEdge < endEdge) {
+            int currentHeight = min(bars[startEdge], bars[endEdge]);
+            int currentWidth = endEdge - startEdge;
+
+            bestHold = max(bestHold, currentHeight * currentWidth);
+
+            if (bars[startEdge] < bars[endEdge]) {
+                startEdge++;
+            } else {
+                endEdge--;
+            }
+        }
+
+        return bestHold;
+    }
+};
